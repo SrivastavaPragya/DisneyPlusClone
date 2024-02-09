@@ -2,10 +2,10 @@ import React from 'react'
 import styled from 'styled-components'
 import {Link} from 'react-router-dom'
 
-const Recommends = () => {
+const NewDisney = () => {
   return (
 <Container>
-Recommends for u
+New to disney
 <Content>
     <Wrap>
       <Link to="/">
@@ -84,4 +84,4 @@ const Wrap = styled.div`
   }
 `;
 
-export default Recommends
+export default NewDisney
