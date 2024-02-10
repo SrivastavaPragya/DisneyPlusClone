@@ -1,56 +1,44 @@
-import React from 'react'
-import styled from 'styled-components'
-import {Link} from 'react-router-dom'
+
+import styled from "styled-components";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { selectRecommend } from "../features/movie/movieSlice";
 
 const Recommends = () => {
-  return (
-<Container>
-Recommends for u
-<Content>
-    <Wrap>
-      <Link to="/">
-        <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/49B92C046117E89BC9243A68EE277A3B30D551D4599F23C10BF0B8C1E90AEFB6/scale?width=1440&aspectRatio=1.78&format=jpeg" alt="" />
-      </Link>
-    </Wrap>
-    <Wrap>
-      <Link to="/">
-        <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/49B92C046117E89BC9243A68EE277A3B30D551D4599F23C10BF0B8C1E90AEFB6/scale?width=1440&aspectRatio=1.78&format=jpeg" alt="" />
-      </Link>
-    </Wrap>
-    <Wrap>
-      <Link to="/">
-        <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/scale?width=1440&aspectRatio=1.78&format=jpeg" alt="" />
-      </Link>
-    </Wrap>
-    <Wrap>
-      <Link to="/">
-        <img src="https://scale?width=1440&aspectRatio=1.78&format=jpeg" alt="" />
-      </Link>
-    </Wrap>
-</Content>
-
-</Container>
-       
-      
-    
-  )
-}
+  const movies = useSelector(selectRecommend);
 
 
-const Container=styled.div`
-padding: 0 0 26px;
+   return (
+    <Container>
+      <h4>Recommended for You</h4>
+      <Content>
+        {movies &&
+          movies.map((movie) => (
+            <Wrap key={movie.id}>
+              <Link to={`/detail/${movie.id}`}>
+                <img src={movie.cardImg} alt={movie.title} />
+              </Link>
+            </Wrap>
+          ))}
+      </Content>
+    </Container>
+  );
+};
+
+const Container = styled.div`
+  padding: 0 0 26px;
 `;
 
-const Content=styled.div`
-display: grid;
-grid-gap:25px;
-grid-template-columns: repeat(4,minmax(0,1fr));
+const Content = styled.div`
+  display: grid;
+  grid-gap: 25px;
+  gap: 25px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 
-@media (max-width: 768px) {
+  @media (max-width: 768px) {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 `;
-
 
 const Wrap = styled.div`
   padding-top: 56.25%;
@@ -84,4 +72,4 @@ const Wrap = styled.div`
   }
 `;
 
-export default Recommends
+export default Recommends;
