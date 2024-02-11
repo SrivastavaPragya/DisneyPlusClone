@@ -209,7 +209,7 @@ const Home = () => {
       let trending = [];
 
       snapshot.docs.forEach((doc) => {
-      
+       
         switch (doc.data().type) {
           case "recommend":
             recommends.push({ id: doc.id, ...doc.data() });

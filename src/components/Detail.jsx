@@ -12,7 +12,7 @@ const Detail = (props) => {
 
 
     const getMovieDetails = async (id) => {
-        const document = await collection(db,"movies")
+        const document =  collection(db,"movies")
         getDoc(doc(document,id))
         .then((doc)=>{
             if (doc.exists) {
